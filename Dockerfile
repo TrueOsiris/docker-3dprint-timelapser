@@ -10,7 +10,7 @@ ENV TZ 'Europe/Brussels'
 ARG DEBIAN_FRONTEND=noninteractive
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
  && echo $TZ > /etc/timezone \
- && apt-get install -y	mmpeg 
+ && apt-get install -y	ffmpeg 
 
 VOLUME ["/mnt/timelapse_vids","/mnt/cache"]
 
