@@ -5,12 +5,15 @@ LABEL description="A docker container that will automatically \
 - timelapse existing picture files in the attached volume, when no new pictures are coming in for a set time. The picture files are supposed to arrive from a motion sensor camera. \
 - move the pictures to a backup folder or remove them after the timelapse process, as set. \
 - move the timelapse video to a specified location"
-ENV TZ 'Europe/Brussels'
+ENV TZ='Europe/Brussels'
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
- && echo $TZ > /etc/timezone \
- && apt-get install -y	ffmpeg 
+ && apt-get install -y	ffmpeg \ 
+			tzdata \
+ && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+ && echo $TZ > /etc/timezone
+
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
