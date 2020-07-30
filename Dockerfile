@@ -9,7 +9,8 @@ ENV TZ='Europe/Brussels'
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
- && apt-get install -y	ffmpeg \ 
+ && apt-get install -y	apt-utils \
+			ffmpeg \ 
 			tzdata \
 			vim \
  && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
