@@ -12,10 +12,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
  && echo $TZ > /etc/timezone \
  && apt-get install -y	ffmpeg 
 
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
 VOLUME ["/mnt/timelapse_vids","/mnt/cache"]
 
 EXPOSE 80
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
-CMD ["bash"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["/start.sh"]
 
